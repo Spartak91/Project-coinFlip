@@ -1,8 +1,14 @@
 import "./Ownable.sol";
+import "./provableAPI.sol";
 pragma solidity ^0.5.12;
 
-contract CoinFlip is Ownable{
+contract CoinFlip is Ownable, usingProvable{
+    
+    uint256 constant NUM_RANDOM_BYTES_REQUESTED = 1;
     uint public balance;
+    
+    
+
 
     event coinFlipped(uint result);
     event flipWon();
@@ -18,6 +24,8 @@ contract CoinFlip is Ownable{
         emit coinFlipped(result);
         return result;
     }
+
+
 
     function settleBet(uint prediction) public payable validateBet {
         require(prediction == 0 || prediction == 1);
@@ -44,5 +52,7 @@ contract CoinFlip is Ownable{
        msg.sender.transfer(toTransfer);
        return toTransfer;
    }
+
+
 
 }
