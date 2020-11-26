@@ -10,7 +10,7 @@ var alert = `<div class="alert alert-dismissible fade show" role="alert">
 
 $(document).ready(function() {
     window.ethereum.enable().then(async function(accounts) {
-        contractInstance = new web3.eth.Contract(abi, "0x4797ed1C5748A61A3edf19876A16b977507782aB", {from: accounts[0]});
+        contractInstance = new web3.eth.Contract(abi, "0xF4929EC82E5C54Ec364d38a54FbEA5344Afff961", {from: accounts[0]});
         
         console.log(contractInstance);
        
