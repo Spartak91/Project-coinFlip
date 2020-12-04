@@ -48,13 +48,13 @@ $(document).ready(function() {
 });
 
 async function placeBet(){
-    var prediction = parseInt($("#prediction").val());
-    var bet = parseFloat($("#bet_input").val()) * (10 ** 18); 
+    var prediction = parseInt($("#result").val());
+    var bet = parseFloat($("#bet_input").val()) * (10 ** 18);
     var balance = await contractInstance.methods.balance().call();
     balance = parseFloat(balance);
     
     if(balance >= bet && bet > 0) {
-        contractInstance.methods.settleBet().send()
+        contractInstance.methods.settleBet(result).send({value: bet})
     } else {
         let warning = $.parseHTML(alert);
         $(warning).addClass("alert-danger");
