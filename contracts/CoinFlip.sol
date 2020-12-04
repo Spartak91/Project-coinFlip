@@ -43,7 +43,7 @@ contract CoinFlip is Ownable, usingProvable{
 
     function settleBet() public payable validateBet {
         
-        require(balance!=0, "You lost");
+        require(balance!=0, "Balance empty");
         require(msg.value*2 <= balance, "Not enough funds to pay out");
 
         require(waitingList[msg.sender] == false);

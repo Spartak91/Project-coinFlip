@@ -10,7 +10,7 @@ var alert = `<div class="alert alert-dismissible fade show" role="alert">
 
 $(document).ready(function() {
     window.ethereum.enable().then(async function(accounts) {
-        contractInstance = new web3.eth.Contract(abi, "0xF4929EC82E5C54Ec364d38a54FbEA5344Afff961", {from: accounts[0]});
+        contractInstance = new web3.eth.Contract(abi, "0x054c7C1D59B102A99c5D896E66825C818a4DabAB", {from: accounts[0]});
         
         console.log(contractInstance);
        
@@ -54,7 +54,7 @@ async function placeBet(){
     balance = parseFloat(balance);
     
     if(balance >= bet && bet > 0) {
-        contractInstance.methods.settleBet(prediction).send({value: bet})
+        contractInstance.methods.settleBet().send()
     } else {
         let warning = $.parseHTML(alert);
         $(warning).addClass("alert-danger");
