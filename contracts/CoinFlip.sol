@@ -44,7 +44,7 @@ contract CoinFlip is Ownable, usingProvable{
     function settleBet() public payable validateBet {
         
         require(balance!=0, "Balance empty");
-        require(msg.value*2 <= balance, "Not enough funds to pay out");
+        require(msg.value <= balance, "Not enough funds to pay out");
 
         require(waitingList[msg.sender] == false);
 
@@ -63,7 +63,7 @@ contract CoinFlip is Ownable, usingProvable{
         betList[queryId] = Bet(msg.sender,  msg.value, false);  
 
         emit StartBetEvent(msg.sender, msg.value, queryId);
-        emit LogNewProvableQuery("Provable query was sent, standing by for answer...");
+        emit LogNewProvableQuery("Provable query was sent, standing by for the answer...");
     }
 
     function __callback(bytes32 _queryId,string memory _result, bytes memory _proof) public {
