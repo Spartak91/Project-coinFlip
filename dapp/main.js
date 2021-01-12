@@ -11,9 +11,15 @@ var alert = `<div class="alert alert-dismissible fade show" role="alert">
 $(document).ready(function() {
     window.ethereum.enable().then(async function(accounts) {
         contractInstance = new web3.eth.Contract(abi, "0x60968EA2F262F3aCc7B0d41b9e2ef39b2C462a55", {from: accounts[0]});
+        contractBalance = await web3.eth.getBalance("0x60968EA2F262F3aCc7B0d41b9e2ef39b2C462a55");
         
+
         console.log(contractInstance);
+        console.log(contractBalance);
+
        
+        
+        
         contractInstance.events.allEvents()
             .on('data', function(event){
                 if(event.event == "flipWon") {
@@ -62,5 +68,6 @@ async function placeBet(){
         $("#bet-alerts").prepend(warning);
         setTimeout(() => $(warning).alert('close'), 5000);
     }
+
+    
 }
- 

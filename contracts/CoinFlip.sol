@@ -38,13 +38,12 @@ contract CoinFlip is Ownable, usingProvable{
         _;
     }
 
-    
+
 
 
     function settleBet() public payable validateBet {
         
-        require(balance!=0, "Balance empty");
-        require(msg.value <= balance, "Not enough funds to pay out");
+        require(msg.value <= balance / 2, "Not enough funds to pay out");
 
         require(waitingList[msg.sender] == false);
 
@@ -105,6 +104,7 @@ contract CoinFlip is Ownable, usingProvable{
         balance += msg.value;
         return balance;
     }
+
 
     function withdrawAll() public onlyOwner returns(uint) {
        uint toTransfer = balance;
